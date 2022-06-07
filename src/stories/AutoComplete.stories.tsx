@@ -1,9 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import AutoComplete from 'components/AutoComplete';
+import AutoComplete from '../components/AutoComplete';
 import React from 'react';
 
 export default {
-  title: 'AutoCompleteStory',
+  title: 'Example/AutoComplete',
   component: AutoComplete,
   argTypes: {
     backgroundColor: {},
@@ -12,13 +12,17 @@ export default {
 
 const Template: ComponentStory<typeof AutoComplete> = (args) => <AutoComplete {...args} />;
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  label: 'AutoComplete1',
+Default.args = {
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'AutoComplete2',
+export const Small = Template.bind({});
+Small.args = {
+  size: "small"
+};
+
+export const Medium = Template.bind({});
+Medium.args = {
+  size: "medium"
 };

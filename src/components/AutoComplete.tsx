@@ -1,4 +1,4 @@
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, Paper, TextField } from '@mui/material';
 import React from 'react';
 
 const tempData = [
@@ -24,11 +24,61 @@ const tempData = [
   { title: 'Menu item 20', id: 20 },
 ];
 
-interface autoCompleteProps {
-  label: string;
+interface CustomPaperProps {
 }
 
-const AutoComplete: React.FC<autoCompleteProps> = ({ label }) => {
+const CustomPaper: React.FC<CustomPaperProps> = (props) => {
+  return <Paper
+    elevation={8}
+    {...props}
+    sx={{
+      '&::-webkit-scrollbar': {
+        width: '10px'
+      },
+      '&::-webkit-scrollbar-track': {
+        boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+        webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+      },
+      '&::-webkit-scrollbar-thumb': {
+        backgroundColor: 'rgba(0,0,0,.1)',
+        outline: '10px solid slategrey'
+      },
+      '@global': {
+        '*::-webkit-scrollbar': {
+          width: '10px'
+        },
+        '*::-webkit-scrollbar-track': {
+          '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+        },
+        '*::-webkit-scrollbar-thumb': {
+          backgroundColor: 'rgba(0,0,0,.1)',
+          outline: '1px solid slategrey'
+        }
+      }
+    }}
+  />;
+};
+
+interface AutoCompleteProps {
+  label?: string;
+  placeHolder?: string;
+  backgroundColor?: string;
+  width?: string;
+  borderRadius?: string;
+  size?: "small" | "medium" | undefined;
+  onChange?: () => void;
+  onInputChange?: () => void;
+  onOpen?: () => void;
+}
+const AutoComplete: React.FC<AutoCompleteProps> = ({
+  label = "Label",
+  placeHolder = "Value",
+  backgroundColor = "white",
+  width = "320px",
+  size = "small",
+  borderRadius = "10px",
+  ...props
+}) => {
   return (
     <Autocomplete
       multiple
@@ -36,11 +86,19 @@ const AutoComplete: React.FC<autoCompleteProps> = ({ label }) => {
       options={tempData}
       getOptionLabel={(option) => option.title}
       filterSelectedOptions
+      size={size}
+      sx={{
+        width,
+        backgroundColor,
+        borderRadius,
+      }}
+      {...props}
+      PaperComponent={CustomPaper}
       renderInput={(params) => (
         <TextField
           {...params}
-          label="filterSelectedOptions"
-          placeholder="Favorites"
+          label={label}
+          placeholder={placeHolder}
         />
       )}
     />
