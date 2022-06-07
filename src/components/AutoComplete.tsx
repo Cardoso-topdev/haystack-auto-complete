@@ -24,14 +24,17 @@ const tempData = [
   { title: 'Menu item 20', id: 20 },
 ];
 
-const AutoComplete: React.FC = () => {
+interface autoCompleteProps {
+  label: string;
+}
+
+const AutoComplete: React.FC<autoCompleteProps> = ({ label }) => {
   return (
     <Autocomplete
       multiple
       id="tags-outlined"
       options={tempData}
       getOptionLabel={(option) => option.title}
-      defaultValue={[tempData[13]]}
       filterSelectedOptions
       renderInput={(params) => (
         <TextField

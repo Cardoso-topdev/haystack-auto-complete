@@ -3,10 +3,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { StoreValue } from 'types/recipe';
 
+interface HeaderProps {
+  name: string
+}
 /**
- * Header component. Displaying favorite recipe count on the top right nav bar
+ * Header component.
  */
-const Header: React.FC = () => {
+const Header: React.FC<HeaderProps> = ({ name }) => {
   const recipes = useSelector((state: StoreValue) => state.recipeReducer.recipes)
   const favoritesCnt = recipes.filter(item => item.favorite).length
   return (

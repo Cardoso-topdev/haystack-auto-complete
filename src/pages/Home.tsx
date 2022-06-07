@@ -31,7 +31,7 @@ const Home: React.FC = () => {
 
   return (
     <MainLayout>
-      <AutoComplete />
+      <AutoComplete label='default' />
     </MainLayout>
   );
 };
