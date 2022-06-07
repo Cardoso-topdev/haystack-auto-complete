@@ -4,6 +4,7 @@ import { RecipeApis } from 'service/api-service';
 import { setRecipes } from 'redux/redux-slice';
 import { RecipeRawType, StoreValue } from 'types/recipe';
 import MainLayout from '../layouts/MainLayout';
+import AutoComplete from 'components/AutoComplete';
 
 /**
  * Display cooking recipes data in the materiable table
@@ -30,7 +31,7 @@ const Home: React.FC = () => {
 
   return (
     <MainLayout>
-      Home
+      <AutoComplete />
     </MainLayout>
   );
 };
