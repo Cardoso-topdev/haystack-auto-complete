@@ -1,12 +1,11 @@
 import { createTheme } from "@mui/material";
 
 export const theme = createTheme({
-  // palette: {
-  //   text:{
-  //     primary: "#000000",
-  //     secondary: '#222222'
-  //   }
-  // },
+  palette: {
+    text: {
+      primary: "#192048",
+    }
+  },
   breakpoints: {
     values: {
       xs: 0,

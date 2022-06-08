@@ -1,7 +1,12 @@
-import { Autocomplete, Paper, TextField } from '@mui/material';
+import { Autocomplete, Paper, styled, TextField, Typography } from '@mui/material';
 import React from 'react';
 
-const tempData = [
+interface AutoCompleteItem {
+  title: string,
+  id: number
+}
+
+const tempData: Array<AutoCompleteItem> = [
   { title: 'Menu item 1', id: 1 },
   { title: 'Menu item 2', id: 2 },
   { title: 'Menu item 3', id: 3 },
@@ -24,6 +29,14 @@ const tempData = [
   { title: 'Menu item 20', id: 20 },
 ];
 
+// MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeSmall css-1xbg7b5-MuiButtonBase-root-MuiChip-root
+
+const CustomAutoComplete = styled(Autocomplete)`
+  box-shadow: inset 0 0 3px rgba(black, 0.8);
+  & .MuiChip-root.MuiChip-filled {
+    background-color: rgba(63, 81, 181, 0.08);
+  }
+`
 interface CustomPaperProps {
 }
 
@@ -33,27 +46,16 @@ const CustomPaper: React.FC<CustomPaperProps> = (props) => {
     {...props}
     sx={{
       '&::-webkit-scrollbar': {
-        width: '10px'
+        width: '14px'
       },
       '&::-webkit-scrollbar-track': {
-        boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
-        webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+        boxShadow: 'inset 0 0 3px rgba(black, 0.8)'
       },
       '&::-webkit-scrollbar-thumb': {
-        backgroundColor: 'rgba(0,0,0,.1)',
-        outline: '10px solid slategrey'
-      },
-      '@global': {
-        '*::-webkit-scrollbar': {
-          width: '10px'
-        },
-        '*::-webkit-scrollbar-track': {
-          '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
-        },
-        '*::-webkit-scrollbar-thumb': {
-          backgroundColor: 'rgba(0,0,0,.1)',
-          outline: '1px solid slategrey'
-        }
+        border: '4px solid transparent',
+        borderRadius: '10px',
+        width: '6px',
+        boxShadow: 'inset 0 0 10px 10px #5E637F'
       }
     }}
   />;
@@ -80,28 +82,30 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
   ...props
 }) => {
   return (
-    <Autocomplete
-      multiple
-      id="tags-outlined"
-      options={tempData}
-      getOptionLabel={(option) => option.title}
-      filterSelectedOptions
-      size={size}
-      sx={{
-        width,
-        backgroundColor,
-        borderRadius,
-      }}
-      {...props}
-      PaperComponent={CustomPaper}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          label={label}
-          placeholder={placeHolder}
-        />
-      )}
-    />
+    <>
+      <Typography variant='caption'>{label}</Typography>
+      <CustomAutoComplete
+        multiple
+        id="tags-outlined"
+        options={tempData}
+        getOptionLabel={(option: any) => option.title ?? ""}
+        filterSelectedOptions
+        size={size}
+        sx={{
+          width,
+          backgroundColor,
+          borderRadius,
+        }}
+        {...props}
+        PaperComponent={CustomPaper}
+        renderInput={(params: any) => (
+          <TextField
+            {...params}
+            placeholder={placeHolder}
+          />
+        )}
+      />
+    </>
   );
 };
 
