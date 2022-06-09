@@ -58,38 +58,19 @@ const Template: ComponentStory<typeof AutoComplete> = (args) => {
   return (<>
     <AutoComplete
       {...args}
-      label="Default single small size"
       onChange={onChange}
       value={value}
-    />
-    <AutoComplete
-      {...args}
-      label="Single Medium size"
-      onChange={onChange2}
-      size="medium"
-      value={value2}
     />
   </>)
 };
 
-export const Single = Template.bind({});
+export const Default = Template.bind({});
 
-Single.args = {
+Default.args = {
   size: 'small',
   options: tempData,
-  label: 'Default Lavel',
-  placeHolder: 'Default Value',
-  multiple: false,
-  width: 320
-};
-
-export const Multiple = Template.bind({});
-
-Multiple.args = {
-  size: 'small',
-  options: tempData,
-  label: 'Default Lavel',
-  placeHolder: 'Default Value',
+  label: 'Lavel',
+  placeHolder: 'Value',
   multiple: true,
   width: 320
 };
