@@ -1,7 +1,5 @@
 import { AppBar, Box, Link, Toolbar, Typography } from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { StoreValue } from 'types/recipe';
 
 interface HeaderProps {
   name: string
@@ -10,8 +8,6 @@ interface HeaderProps {
  * Header component.
  */
 const Header: React.FC<HeaderProps> = ({ name }) => {
-  const recipes = useSelector((state: StoreValue) => state.recipeReducer.recipes)
-  const favoritesCnt = recipes.filter(item => item.favorite).length
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar>
