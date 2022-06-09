@@ -69,7 +69,7 @@ export const Default = Template.bind({});
 Default.args = {
   size: 'small',
   options: tempData,
-  label: 'Lavel',
+  label: 'Label',
   placeHolder: 'Value',
   multiple: true,
   width: 320
